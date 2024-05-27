@@ -17,11 +17,6 @@ public class JmsConnection {
 
     public static void main(String[] args) throws Exception {
 
-        String url = "tcp://localhost:61616";
-        String userName = "admin";
-        String password = "admin";
-
-
 
         try (CamelContext context = new DefaultCamelContext()) {
 
