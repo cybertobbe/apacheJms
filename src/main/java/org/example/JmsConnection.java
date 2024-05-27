@@ -2,12 +2,8 @@ package org.example;
 
 import jakarta.jms.Connection;
 import jakarta.jms.JMSException;
-import jakarta.jms.ConnectionFactory;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
-import org.apache.camel.ProducerTemplate;
-import org.apache.camel.RoutesBuilder;
-import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.component.jms.JmsComponent;
 import java.util.logging.LogManager;
@@ -37,7 +33,7 @@ public class JmsConnection {
 
             try {
                 connectionFactory = new ActiveMQConnectionFactory();
-                Connection connection = (Connection) connectionFactory.createConnection();
+                Connection connection = connectionFactory.createConnection();
                 connection.start();
                 log.info("Connection successful");
             } catch (JMSException e) {
