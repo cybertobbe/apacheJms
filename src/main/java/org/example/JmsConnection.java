@@ -6,6 +6,7 @@ import jakarta.jms.ConnectionFactory;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
+import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.component.jms.JmsComponent;
@@ -40,24 +41,15 @@ public class JmsConnection {
                 connection.start();
                 log.info("Connection successful");
             } catch (JMSException e) {
-                //System.out.println("Connection failed");
                 log.info("Connection failed");
             }
 
             context.addComponent("activemq", JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
 
-            context.addRoutes(new RouteBuilder() {
-                @Override
-                public void configure() throws Exception {
-
-                    from("activemq:queue:my_queue")
-                            .to("file:src/data");
-                }
-            });
+            FIleToQueue fileToQueue = new FIleToQueue();
+            context.addRoutes(new FIleToQueue());
             context.start();
-            try (ProducerTemplate template = context.createProducerTemplate()) {
-                template.sendBody("activemq:queue:my_queue", "Hello World");
-            }
+            fileToQueue.readMessage(context);
 
             Thread.sleep(6000);
             context.stop();
