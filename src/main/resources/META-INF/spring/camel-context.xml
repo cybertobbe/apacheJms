@@ -29,7 +29,8 @@
          another route which then performs content based
          routing on the messages using XPath. 
   -->
-  <camelContext xmlns="http://camel.apache.org/schema/spring">
+  <camelContext xmlns="http://camel.apache.org/schema/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://camel.apache.org/schema/spring ">
     <route>
       <from uri="file:src/data?noop=true"/>
       <to uri="activemq:personnel.records"/>
