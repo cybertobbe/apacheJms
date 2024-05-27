@@ -18,17 +18,4 @@ public class FIleToQueue extends RouteBuilder {
     }
 
 
-    public void readMessage(CamelContext context) throws Exception {
-        context.addRoutes(new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                from("activemq:queue:my_queue")
-                        .process(exchange -> {
-                            System.out.println("Message received from queue: " + exchange.getIn().getBody());})
-                        .end();
-            }
-        });
-
-
-    }
 }
