@@ -1,6 +1,6 @@
 package org.example;
 
-import org.apache.camel.Exchange;
+
 import org.apache.camel.builder.RouteBuilder;
 
 public class ReadMessage extends RouteBuilder {
