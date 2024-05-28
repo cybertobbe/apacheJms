@@ -6,12 +6,12 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.component.jms.JmsComponent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class JmsConnection {
 
-    private static final Logger log = LogManager.getLogger(JmsConnection.class);
+    private static final Logger log = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 
     public static void main(String[] args) throws Exception {
@@ -38,8 +38,11 @@ public class JmsConnection {
 
             FIleToQueue fileToQueue = new FIleToQueue();
             context.addRoutes(fileToQueue);
-            context.start();
 
+
+            ReadMessage readMessage = new ReadMessage();
+            context.addRoutes(readMessage);
+            context.start();
 
             Thread.sleep(10000);
             context.stop();
