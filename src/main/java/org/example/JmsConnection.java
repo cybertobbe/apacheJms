@@ -6,13 +6,12 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.component.jms.JmsComponent;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class JmsConnection {
 
-    private static final Logger log = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static final Logger log = LogManager.getLogger(JmsConnection.class);
 
 
     public static void main(String[] args) throws Exception {
