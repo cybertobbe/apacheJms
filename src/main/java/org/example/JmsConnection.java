@@ -39,10 +39,11 @@ public class JmsConnection {
 
             FIleToQueue fileToQueue = new FIleToQueue();
             context.addRoutes(fileToQueue);
-            context.start();
+
 
             ReadMessage readMessage = new ReadMessage();
             context.addRoutes(readMessage);
+            context.start();
 
             Thread.sleep(10000);
             context.stop();
