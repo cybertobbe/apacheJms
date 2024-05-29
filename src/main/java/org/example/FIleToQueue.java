@@ -9,11 +9,6 @@ public class FIleToQueue extends RouteBuilder {
     public void configure() {
         from("file:src/data")
                 .convertBodyTo(String.class)
-                .to("activemq:queue:my_queue")
-                .onCompletion()
-                .log("Message sent to queue")
-                .end();
+                .to("activemq:queue:my_queue");
     }
-
-
 }
