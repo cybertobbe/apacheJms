@@ -24,7 +24,6 @@ public class JmsConnection {
             connectionFactory.setUserName("admin");
             connectionFactory.setPassword("admin");
 
-
             try {
                 connectionFactory = new ActiveMQConnectionFactory();
                 Connection connection = connectionFactory.createConnection();
@@ -35,6 +34,8 @@ public class JmsConnection {
             }
 
             context.addComponent("activemq", JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
+
+            FileCreator.createFiles();
 
             FIleToQueue fileToQueue = new FIleToQueue();
             context.addRoutes(fileToQueue);
