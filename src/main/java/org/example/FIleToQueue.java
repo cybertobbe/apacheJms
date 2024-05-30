@@ -3,12 +3,17 @@ package org.example;
 import org.apache.camel.builder.RouteBuilder;
 
 
+
+
 public class FIleToQueue extends RouteBuilder {
 
     @Override
     public void configure() {
         from("file:src/data")
                 .convertBodyTo(String.class)
-                .to("activemq:queue:my_queue");
+                .to("activemq:queue:my_queue")
+                .log("Message sent to queue");
+
+
     }
 }
