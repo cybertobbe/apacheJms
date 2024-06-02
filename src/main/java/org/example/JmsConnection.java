@@ -35,7 +35,7 @@ public class JmsConnection {
 
             context.addComponent("activemq", JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
 
-            FileCreator.createFiles();
+
 
             FIleToQueue fileToQueue = new FIleToQueue();
             context.addRoutes(fileToQueue);
